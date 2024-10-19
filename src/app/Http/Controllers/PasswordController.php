@@ -13,6 +13,6 @@ class PasswordController extends Controller
 
     public function email()
     {
-        return view('password.password_email');
+        return view('password.password_email-2');
     }
 }

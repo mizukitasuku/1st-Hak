@@ -1,88 +1,41 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Form</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
+@section('body-class', 'logged-out')
 
-<body>
-  <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
-        Contact Form
-      </a>
+@section('content')
+<form method="POST" action="{{ route('register.store') }}">
+    @csrf
+    <h2>新規登録</h2>
+    <div>
+        <label for="name">名前:ユーザーネーム</label>
+        <input id="name" type="text" name="name" required autofocus>
     </div>
-  </header>
 
-  <main>
-    <div class="contact-form__content">
-      <div class="contact-form__heading">
-        <h2>-新規登録ページ</h2>
-      </div>
-      <form class="form">
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お名前</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="text" name="name" placeholder="テスト太郎" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">メールアドレス</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="email" name="email" placeholder="test@example.com" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">電話番号</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="tel" name="tel" placeholder="09012345678" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お問い合わせ内容</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--textarea">
-              <textarea name="content" placeholder="資料をいただきたいです"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
-        </div>
-      </form>
+    <div>
+        <label for="email">ID:メールアドレス</label>
+        <input id="email" type="email" name="email" required>
     </div>
-  </main>
-</body>
 
-</html>
+    <div>
+        <label for="email_confirmation">確認用ID:メールアドレス</label>
+        <input id="email_confirmation" type="email" name="email_confirmation" required>
+    </div>
+
+    <div>
+        <label for="password">Pass:</label>
+        <input id="password" type="password" name="password" required>
+    </div>
+
+    <div>
+        <label for="password_confirmation">確認用Pass:</label>
+        <input id="password_confirmation" type="password" name="password_confirmation" required>
+    </div>
+
+    <button type="submit">新規登録する</button>
+  </form>
+  <a href="{{ route('login') }}">ログイン画面へ</a>
+@endsection
+
+@section('footer-content')
+    <!-- ログインページでは特にフッターのカスタム内容はなし -->
+@endsection

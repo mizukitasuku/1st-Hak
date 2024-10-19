@@ -1,88 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Form</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
-
-<body>
-  <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
-        Contact Form
-      </a>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>ホームページ</h2>
+                    <div class="menu-bar">
+                        <span>データを取り込む</span> |
+                        <span>ユーザーデータの削除</span> |
+                        <span>データを閲覧</span> |
+                        <span>データの編集</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="main-buttons">
+                        <button class="btn btn-primary mb-3 w-100">データを取り込む</button>
+                        <button class="btn btn-primary mb-3 w-100">データの削除</button>
+                        <button class="btn btn-primary mb-3 w-100">データを閲覧</button>
+                        <button class="btn btn-primary mb-3 w-100">データの編集</button>
+                    </div>
+                    <div class="user-options">
+                        <div class="user-info-change mb-3">
+                            <a href="#" class="btn btn-secondary">ユーザー情報の変更</a>
+                        </div>
+                        <div class="user-photo-change">
+                            <a href="#" class="btn btn-secondary">ユーザー写真</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
-
-  <main>
-    <div class="contact-form__content">
-      <div class="contact-form__heading">
-        <h2>ホームページお問い合わせ</h2>
-      </div>
-      <form class="form">
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お名前</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="text" name="name" placeholder="テスト太郎" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">メールアドレス</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="email" name="email" placeholder="test@example.com" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">電話番号</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="tel" name="tel" placeholder="09012345678" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お問い合わせ内容</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--textarea">
-              <textarea name="content" placeholder="資料をいただきたいです"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
-        </div>
-      </form>
+    <div class="logout-section text-center mt-5">
+        <a href="/logout-test" class="btn btn-danger">ログアウトする</a>
     </div>
-  </main>
-</body>
-
-</html>
+</div>
+@endsection

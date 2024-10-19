@@ -1,88 +1,46 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Form</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">{{ __('Pass忘れページ') }}</div>
 
-<body>
-  <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
-        Contact Form
-      </a>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="email">{{ __('メールアドレス') }}</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('送信する。') }}
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="form-group">
+                        <a href="{{ route('login') }}" class="btn btn-secondary">{{ __('ログイン画面へ') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
-
-  <main>
-    <div class="contact-form__content">
-      <div class="contact-form__heading">
-        <h2>-Pass忘れたらページ</h2>
-      </div>
-      <form class="form">
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お名前</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="text" name="name" placeholder="テスト太郎" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">メールアドレス</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="email" name="email" placeholder="test@example.com" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">電話番号</span>
-            <span class="form__label--required">必須</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--text">
-              <input type="tel" name="tel" placeholder="09012345678" />
-            </div>
-            <div class="form__error">
-              <!--バリデーション機能を実装したら記述します。-->
-            </div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="form__group-title">
-            <span class="form__label--item">お問い合わせ内容</span>
-          </div>
-          <div class="form__group-content">
-            <div class="form__input--textarea">
-              <textarea name="content" placeholder="資料をいただきたいです"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
-        </div>
-      </form>
-    </div>
-  </main>
-</body>
-
-</html>
+</div>
+@endsection
